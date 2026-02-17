@@ -1,0 +1,12 @@
+CREATE TABLE hr_user (
+ id BIGSERIAL PRIMARY KEY,
+ tenant_code VARCHAR(50) NOT NULL,
+ employee_id VARCHAR(50) NOT NULL UNIQUE,
+ email VARCHAR(255) NOT NULL UNIQUE,
+ display_name VARCHAR(255) NOT NULL,
+ user_type VARCHAR(50) NOT NULL,
+ status VARCHAR(50) NOT NULL,
+ terminated_at TIMESTAMP NULL,
+ created_at TIMESTAMP NOT NULL,
+ updated_at TIMESTAMP NOT NULL
+);
