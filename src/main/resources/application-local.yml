@@ -1,26 +1,27 @@
 spring:
   datasource:
-    url: jdbc:postgresql://localhost:5434/hr_db
-    username: hr_user
-    password: hr_password
+    url: jdbc:postgresql://localhost:5434/${HR_DB_NAME}
+    username: ${HR_DB_USER}
+    password: ${HR_DB_PASSWORD}
     driver-class-name: org.postgresql.Driver
 
-  jpa:
-    hibernate:
-      ddl-auto: validate
-    show-sql: true
-    properties:
-      hibernate:
-        format_sql: true
+    hikari:
+      pool-name: HrServiceHikariPool
+      maximum-pool-size: 10
+      minimum-idle: 2
+      idle-timeout: 30000
+      max-lifetime: 1800000
+      connection-timeout: 30000
 
   flyway:
     enabled: true
-    locations: classpath:db/migration
-    baseline-on-migrate: true
 
 server:
-  port: 8082
+  port: 8080
 
 logging:
   level:
-    org.hibernate.SQL: DEBUG
+    org.hibernate.SQL: INFO
+
+user:
+  base-url: ${USER_BASE_URL:http://localhost:8081}
