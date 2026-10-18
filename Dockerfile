@@ -5,6 +5,16 @@ FROM maven:3.9.9-eclipse-temurin-21 AS builder
 
 WORKDIR /app
 
+# Accept GitHub token at build time
+ARG GITHUB_TOKEN
+ENV GITHUB_TOKEN=${GITHUB_TOKEN}
+
+# Create .m2 directory
+RUN mkdir -p /root/.m2
+
+# Copy Maven settings (contains ${env.GITHUB_TOKEN})
+COPY settings.xml /root/.m2/settings.xml
+
 COPY pom.xml .
 RUN mvn dependency:go-offline
 

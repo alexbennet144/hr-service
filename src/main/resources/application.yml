@@ -15,6 +15,26 @@ spring:
     locations: classpath:db/migration
     baseline-on-migrate: true
 
+  kafka:
+    producer:
+      key-serializer: org.apache.kafka.common.serialization.StringSerializer
+      value-serializer: org.springframework.kafka.support.serializer.JsonSerializer
+
+      # Enterprise-safe producer settings
+      acks: all
+      retries: 2147483647
+
+      properties:
+        enable.idempotence: true
+        max.in.flight.requests.per.connection: 5
+        delivery.timeout.ms: 120000
+        linger.ms: 5
+        request.timeout.ms: 30000
+        retry.backoff.ms: 1000
+
+    properties:
+      spring.json.add.type.headers: false
+
 server:
   port: 8080
 
@@ -27,6 +47,5 @@ cognito:
   userPoolId: us-east-1_TOZbkz8xq
   audience: 1fmj0q99hsrk25s8llprks1scp
 
-# Default fallback (can be overridden by profile or env variable)
 user:
   base-url: ${USER_BASE_URL:http://localhost:8081}

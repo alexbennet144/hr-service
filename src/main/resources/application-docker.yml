@@ -16,5 +16,8 @@ spring:
   flyway:
     enabled: true
 
+  kafka:
+    bootstrap-servers: ${KAFKA_BOOTSTRAP_SERVERS:kafka:9093}
+
 user:
   base-url: ${USER_BASE_URL:http://user-service:8080}

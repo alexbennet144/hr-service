@@ -31,3 +31,17 @@ build/
 
 ### VS Code ###
 .vscode/
+
+# Log files
+*.log
+
+# Package files
+*.war
+*.ear
+
+# Environment variables
+.env
+
+# Others
+.DS_Store
+hs_err_pid*

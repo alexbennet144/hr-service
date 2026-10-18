@@ -1,7 +1,9 @@
 package com.smartdesk.hr.entity;
 import java.time.Instant;
-import com.smartdesk.hr.constant.enums.UserStatus;
-import com.smartdesk.hr.constant.enums.UserType;
+
+import com.yourorg.core.constant.enums.UserStatus;
+import com.yourorg.core.constant.enums.UserType;
+
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
